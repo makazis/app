@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valstu Dati</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Valstu Dati</h1>
+        <form method="POST" class="mb-3">
+            <input type="text" name="search" placeholder="Meklēt valsti..." value="{{ search_query }}" class="form-control">
+            <button type="submit" class="btn btn-primary mt-2">Meklēt</button>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nosaukums</th>
+                    <th>Iedzīvotāji</th>
+                    <th>Platība (km²)</th>
+                    <th>Pievienošanās gads</th>
+                    <th>IKP (€)</th>
+                    <th>Vidējie ienākumi (€)</th>
+                    <th>Robežas garums (km)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in data %}
+                    <tr>
+                        <td>{{ country.name }}</td>
+                        <td>{{ country.population }}</td>
+                        <td>{{ country.area }}</td>
+                        <td>{{ country.join_year }}</td>
+                        <td>{{ country.gdp }}</td>
+                        <td>{{ country.avg_income }}</td>
+                        <td>{{ country.border_length }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-secondary">Atpakaļ</a>
+    </div>
+</body>
+</html>
