@@ -77,15 +77,6 @@ def charts():
         "static/population_hist.png",
         "static/correlation_matrix.png"
     ])
-
-# Interaktīvs grafiks ar Plotly
-@app.route("/interactive-chart")
-def interactive_chart():
-    df = pd.read_sql("SELECT * FROM country", db.engine)
-    fig = px.scatter(df, x="gdp", y="avg_income", text="name", size="population", title="IKP pret Vidējo Ienākumu")
-    chart_html = fig.to_html(full_html=False)
-    return render_template("interactive_chart.html", chart_html=chart_html)
-
 # CSV augšupielāde
 @app.route("/upload", methods=["GET", "POST"])
 def upload_file():
